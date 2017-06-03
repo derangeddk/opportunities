@@ -1,0 +1,200 @@
+---
+layout: base
+pageTitle: Find work in better development departments
+---
+<section class="intro">
+    <div class="background">
+        <div class="bar-1"></div>
+        <div class="bar-2"></div>
+        <div class="bar-3"></div>
+    </div>
+    <h1>We build better<br>development departments<br>in Copenhagen</h1>
+    <h2>&hellip; and we want you to work there!</h2>
+    <p>
+        Find your next job with deranged opportunities, and we promise it will be a great place to work.
+        We know, because we built the department, and we made sure to make it good.
+    </p>
+    <p>
+        Read on to discover what we put into the departments we create!
+    </p>
+</section>
+<section class="benefits">
+    <div class="background">
+        <div class="bar-1"></div>
+        <div class="bar-2"></div>
+        <div class="bar-3"></div>
+        <div class="bar-4"></div>
+    </div>
+    <h1>What's in it for you?</h1>
+    <p>If you sign up to deranged opportunities, we will be in touch with offers for great jobs that fit your criteria.</p>
+    <p>We are not recruiters, we are software developers. We build development departments to work in them.</p>
+    <p>
+        We focus on:<br>
+        &bull; building diversity in staff<br>
+        &bull; giving you influence in business decisions<br>
+        &bull; training your boss to work well with developers<br>
+        &bull; helping you grow and improve
+    </p>
+    <p>
+        In addition, we would like to help you advance your career!
+        We will follow you along the way and try to help you figure out how to grow, improve and advance!
+    </p>
+    <p>If this sounds like the kind of job you would like, let's continue &hellip;</p>
+</section>
+<section class="what-to-expect">
+    <div class="background">
+        <div class="bar-1"></div>
+        <div class="bar-2"></div>
+        <div class="bar-3"></div>
+        <div class="bar-4"></div>
+    </div>
+    <h1>What's expected from you?</h1>
+    <h2>We keep hiring simple&mdash;but we take it seriously</h2>
+    <p>
+        Once you sign up, we will be in touch.
+        We will arrange an evaluation session, where we talk about what you want in a job, in a work place, as well as your experiences and abilities.
+    </p>
+    <p>
+        Here are the things we plan on discussing at the meeting:<br>
+        &bullet; The geographical area you are interested in working in<br>
+        &bullet; Your past experiences and fields of work<br>
+        &bullet; Your wishes for new opportunities<br>
+        &bullet; Your abilities in:<br>
+        &nbsp;&nbsp;&nbsp;&nbsp; &bullet; information extraction from domain descriptions;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp; &bullet; decision-making while taking into account business priorities;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp; &bullet; slicing functionality;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp; &bullet; investigation and observation of business practices; and<br>
+        &nbsp;&nbsp;&nbsp;&nbsp; &bullet; reflections on code<br>
+        &bullet; Your reflections on your personal approach to development.
+    </p>
+    <p>
+        After this meeting, you will be on our list.
+        When we next have openings relevant to your profile, you will be contacted.
+        We expect that you may have to wait one to three months after your meeting before first being contacted.
+    </p>
+    <p>
+        If this all sounds good to you, you can sign up below.<br>
+        <br>
+        (If not, you can ask questions at <a href="mailto:opportunities@deranged.dk">opportunities@deranged.dk</a>.)
+    </p>
+</section>
+<section class="sign-up" id="sign-up">
+    <div class="background">
+        <div class="bar-1"></div>
+        <div class="bar-2"></div>
+        <div class="bar-3"></div>
+    </div>
+    <h1>Sign up for opportunities</h1>
+    <form method="POST" action="{{ site.apiHost }}/interested-person">
+        <div class="form-overlay">
+            <p class="sign-up-msg">Signing you up&hellip;</p>
+            <p class="success-msg">Thanks! We'll be in touch.</p>
+            <p class="failure-msg">Something went wrong! Try again&hellip;</p>
+        </div>
+        <label for="name">
+            What should we call you?<br>(First name, nickname or similar.)
+            <input type="text" name="name" id="name">
+        </label>
+        <label for="email">
+            Email
+            <input type="email" name="email" id="email">
+        </label>
+        <div class="button-container">
+            <button type="submit">Towards new adventures</button>
+        </div>
+    </form>
+    <script>
+        var overlay = document.querySelector(".form-overlay");
+        var form = document.forms[0];
+        var signUpMsg = overlay.querySelector(".sign-up-msg");
+        var successMsg = overlay.querySelector(".success-msg");
+        var failureMsg = overlay.querySelector(".failure-msg");
+        var nameField = document.forms[0].name;
+        var emailField = document.forms[0].email;
+
+        form.addEventListener("submit", function(e) {
+            e.preventDefault();
+            showOverlay();
+            var name = nameField.value;
+            var email = emailField.value;
+            sendRequest(name, email, {
+                success: showSuccess,
+                failure: showFailure
+            });
+            return false;
+        });
+
+        function showOverlay() {
+            overlay.style = "display:flex;opacity:0;";
+            signUpMsg.style = "opacity:1;";
+            setTimeout(function() {
+                overlay.style = "display:flex;opacity:1;";
+            }, 10);
+        }
+
+        function sendRequest(name, email, callbacks) {
+            var req = new XMLHttpRequest();
+            req.open("POST", form.action, true);
+            req.setRequestHeader("Content-Type", "application/json");
+
+            req.onreadystatechange = function() {
+                if(req.readyState != 4) {
+                    return;
+                }
+                if(req.status == 200) {
+                    return callbacks.success();
+                }
+                console.error("Response from server on request", {
+                    status: req.statusText,
+                    responseType: req.responseType,
+                    response: req.response
+                });
+                callbacks.failure();
+            };
+
+            req.send(JSON.stringify({
+                name: name,
+                email: email
+            }));
+        }
+
+        function showSuccess() {
+            deleteTextInFields();
+            signUpMsg.style = "opacity:0;";
+            setTimeout(function() {
+                successMsg.style = "opacity:1;";
+                setTimeout(function() {
+                    overlay.style = "display:flex;opacity:0;"
+                    setTimeout(function() {
+                        overlay.style = "display:none;opacity:0;";
+                        successMsg.style = "opacity:0;";
+                    }, 1050);
+                }, 1500);
+            }, 450);
+        }
+
+        function deleteTextInFields() {
+            if(nameField.value.length == 0 && emailField.value.length == 0) {
+                return;
+            }
+            nameField.value = nameField.value.substring(0,nameField.value.length - 1);
+            emailField.value = emailField.value.substring(0,emailField.value.length - 1);
+            setTimeout(deleteTextInFields, 33);
+        }
+
+        function showFailure() {
+            signUpMsg.style = "opacity:0;";
+            setTimeout(function() {
+                overlay.style = "display:flex;opacity:1;background:rgba(52,73,94,0.98);";
+                failureMsg.style = "opacity:1;";
+                setTimeout(function() {
+                    overlay.style = "display:flex;opacity:0;";
+                    setTimeout(function() {
+                        overlay.style = "display:none;opacity:0;";
+                        failureMsg.style = "opacity:0;";
+                    }, 1050);
+                }, 3000);
+            }, 450);
+        }
+    </script>
+</section>

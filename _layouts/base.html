@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>{{ page.pageTitle }} ⇀ deranged opportunities</title>
+        <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,700,900" rel="stylesheet"> 
+        <style type="text/css">
+            body {
+                margin: 0;
+                font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif;
+                background: rgba(0,0,0,0.04);
+            }
+            header {
+                border-bottom: 1px solid #34495e;
+                display: flex;
+                flex-direction: row;
+                justify-content: space-around;
+                padding: 0 8px;
+            }
+            header nav {
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                width: 100%;
+                max-width: 900px;
+                padding: 5px 0;
+                box-sizing: border-box;
+                position: relative;
+            }
+            header nav a {
+                display: inline-block;
+                font-size: 1.3em;
+                text-decoration: none;
+                color: #34495e;
+                font-weight: 300;
+                padding: 15px 10px;
+                margin: 6px 0 0;
+            }
+            header nav a.logo {
+                line-height: 80%;
+                padding: 13px 5px;
+                font-size: 1.2em;
+            }
+            header nav a.logo .deranged {
+                font-weight: 200;
+            }
+            header nav a.logo .arrow {
+                font-weight: 800;
+            }
+            header nav a.logo .opportunities {
+                display: block;
+                font-weight: 400;
+            }
+            section {
+                padding: 12vh 12px calc(12vh + 115px);
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                position: relative;
+            }
+            section > * {
+                max-width: 600px;
+                z-index: 2;
+            }
+            section h1 {
+                font-weight: 200;
+                font-size: 3.3em;
+                text-align: center;
+                margin: 30px 0;
+            }
+            section h2 {
+                font-size: 1.8em;
+                margin: 30px 0;
+                text-align: center;
+            }
+            section p {
+                margin: 30px 0;
+                font-size: 1.35em;
+                width: 100%;
+                line-height: 150%;
+            }
+            section.intro h1, section.for-biz h1 {
+                color: #34495e;
+            }
+            section.intro h2, section.for-biz h2 {
+                color: #34495e;
+            }
+            section .background {
+                max-width: initial;
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                z-index: 1;
+                overflow: hidden;
+            }
+            section.intro .background .bar-1 {
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                height: 300px;
+                background: rgba(44,62,80,0.1);
+                transform: skewY(4deg) translate(0, 150px);
+            }
+            section.intro .background .bar-2 {
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                height: 200px;
+                background: rgba(44,62,80,0.15);
+                transform: skewY(-8deg) translate(0, 100px);
+            }
+            section.intro .background .bar-3 {
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                height: 200px;
+                background: rgba(44,62,80,1);
+                transform: skewY(-2.3deg) translate(0, 170px);
+            }
+            section.benefits {
+                background: rgb(44,62,80);
+            }
+            section.benefits {
+                color: white;
+            }
+            section.benefits .background .bar-1 {
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                height: 300px;
+                background: rgba(230, 236, 242,0.2);
+                transform: skewY(4deg) translate(0, 150px);
+            }
+            section.benefits .background .bar-2 {
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                height: 200px;
+                background: rgb(230, 236, 242);
+                transform: skewY(-4deg) translate(0, 110px);
+            }
+            section.benefits .background .bar-3 {
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                height: 300px;
+                background: rgba(230, 236, 242,0.1);
+                transform: skewY(14deg) translate(0, 200px);
+            }
+            section.benefits .background .bar-4 {
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                height: 200px;
+                background: rgba(230, 236, 242,0.1);
+                transform: skewY(-2deg) translate(0, 60px);
+            }
+            section.what-to-expect {
+                background: rgb(230, 236, 242);
+            }
+            section.what-to-expect .background .bar-1 {
+                position: absolute;
+                bottom: -100px;
+                left: calc(50% - 100px);
+                height: 200px;
+                width: 200px;
+                background: #34495e;
+                transform: rotate(45deg);
+            }
+            section.what-to-expect .background .bar-4 {
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                height: 100px;
+                background: rgba(52,73,94,0.2);
+                transform: skewY(-3deg) translateY(-50px);
+            }
+            section.sign-up {
+                background: rgba(52,73,94,1);
+                color: white;
+            }
+            section.sign-up .background .bar-1 {
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                height: 200px;
+                background: rgba(0,0,0,0.1);
+                transform: skewY(-7deg) translateY(140px);
+            }
+            section.sign-up .background .bar-2 {
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                height: 200px;
+                background: rgba(0,0,0,0.08);
+                transform: skewY(-2deg) translateY(150px);
+            }
+            section.sign-up .background .bar-3 {
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                height: 200px;
+                background: rgba(0,0,0,0.05);
+                transform: skewY(2deg) translateY(160px);
+            }
+            section.for-biz .background .bar-1 {
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                height: 300px;
+                background: rgba(44,62,80,0.1);
+                transform: skewY(4deg) translate(0, 150px);
+            }
+            section.for-biz .background .bar-2 {
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                height: 200px;
+                background: rgba(44,62,80,0.15);
+                transform: skewY(-8deg) translate(0, 100px);
+            }
+            section.for-biz .background .bar-3 {
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                height: 200px;
+                background: rgba(41,58,73,1);
+                transform: skewY(-2.3deg) translate(0, 170px);
+            }
+            section.deranged {
+                background: rgba(41,58,73,1);
+                color: white;
+            }
+            section.deranged .background .bar-1 {
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                height: 400px;
+                background: rgba(0,0,0,0.1);
+                transform: skewY(4deg) translate(0, 200px);
+            }
+            section.deranged .background .bar-2 {
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                height: 400px;
+                background: rgba(0,0,0,0.15);
+                transform: skewY(-8deg) translate(0, 200px);
+            }
+            section.deranged .background .bar-3 {
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                height: 200px;
+                background: rgba(41,58,73,1);
+                transform: skewY(-2.3deg) translate(0, 170px);
+            }
+            form {
+                display: flex;
+                flex-direction: row;
+                align-items: flex-end;
+                flex-wrap: wrap;
+                padding-top: 50px;
+                position: relative;
+            }
+            form label {
+                flex-basis: 300px;
+                flex-shrink: 1;
+                flex-grow: 1;
+                min-width: 250px;
+                font-size: 0.85em;
+                box-sizing: border-box;
+                padding: 15px;
+                font-weight: 400;
+            }
+            form label input {
+                width: 100%;
+                box-sizing: border-box;
+                margin-top: 5px;
+                padding: 12px 10px;
+                font-size: 1.15em;
+                font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif;
+            }
+            form .button-container {
+                flex-basis: 600px;
+                flex-shrink: 1;
+                flex-grow: 0;
+                padding: 15px;
+                box-sizing: border-box;
+            }
+            form button {
+                width: 100%;
+                border: none;
+                padding: 15px;
+                font-size: 1.5em;
+                font-weight: 200;
+                font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif;
+                color: white;
+                background: rgba(41,58,73,1);
+                cursor: pointer;
+                transition: transform 0.3s, box-shadow 0.3s;
+                box-shadow: 0 0 0 rgba(0,0,0,0.2);
+            }
+            form button:hover {
+                transform: translateY(2px) scale(1.1, 1.1);
+                box-shadow: 0 5px 6px rgba(0,0,0,0.15);
+            }
+            footer {
+                background: rgba(41,58,73,1);
+                color: white;
+                text-align: center;
+                padding: 70px 30px;
+            }
+            a {
+                color: rgba(52,73,94,1);
+            }
+            footer a, .dark a {
+                color: white;
+            }
+            footer h1 {
+                font-weight: 200;
+                margin: 0 0 10px;
+            }
+            form .form-overlay {
+                position: absolute;
+                top: -20px;
+                left: -20px;
+                right: -20px;
+                bottom: -20px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex-direction: column;
+                text-align: center;
+                z-index: 4;
+                background: rgba(52,73,94,0.8);
+                display: none;
+                opacity: 0;
+                transition: opacity 1s, background 1s;
+            }
+            form .form-overlay p {
+                margin: 0;
+                transition: opacity 0.5s;
+                opacity: 0;
+            }
+            form .form-overlay p.sign-up-msg {
+                transform: translateY(32px);
+            }
+            form .form-overlay p.failure-msg {
+                transform: translateY(-32px);
+            }
+            @media(max-width: 700px) {
+                body {
+                    font-size: 0.8em;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <header>
+            <nav>
+                <a href="/" class="logo">
+                    <span class="deranged">deranged</span>
+                    <span class="arrow">⇀</span>
+                    <span class="opportunities">opportunities</span>
+                </a>
+                <div>
+                    <a href="/for-businesses">For businesses</a>
+                    <a href="/about">What is deranged?</a>
+                    <a href="/#sign-up">Sign up</a>
+                </div>
+            </nav>
+        </header>
+        {{ content }}
+        <footer>
+            <h1>deranged</h1>
+            <div>
+                deranged opportunities
+                ⇀
+                &copy; <a href="http://deranged.dk">deranged</a> 2017
+                ⇀
+                all rights reserved
+            </div>
+            <div>
+                <a href="mailto:get@deranged.dk">get@deranged.dk</a> ⇀ cvr 35695583
+            </div>
+        </footer>
+    </body>
+</html>
